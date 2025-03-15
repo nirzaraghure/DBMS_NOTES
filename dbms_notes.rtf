@@ -1,0 +1,464 @@
+{\rtf1\fbidis\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\fnil Calibri;}{\f3\fnil Segoe UI Emoji;}{\f4\fnil\fcharset1 Segoe UI Symbol;}{\f5\fnil Segoe UI Symbol;}{\f6\fnil\fcharset1 Cambria Math;}{\f7\fnil\fcharset0 Cambria Math;}{\f8\fnil Cambria Math;}{\f9\fnil\fcharset0 Arial;}{\f10\fnil\fcharset0 Segoe UI Symbol;}{\f11\fnil\fcharset1 Segoe UI Emoji;}}
+{\colortbl ;\red255\green0\blue0;}
+{\*\generator Riched20 10.0.22621}{\*\mmathPr\mmathFont6\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\b\f0\fs32\lang9 DBMS NOTES\par
+
+\pard\sa200\sl276\slmult1\cf1\fs28 1]### What is DBMS?  \par
+\cf0\b0 A **Database Management System (DBMS)** is software that helps store, manage, and organize data efficiently. It allows users to create, read, update, and delete data in a structured way.\par
+\b ### Why DBMS?  \par
+\b0 Before DBMS, data was stored in files, which made it difficult to manage. DBMS solves many problems by providing:  \par
+\f1\u9989?\f2  \f0 **Easy Data Management** \f2\endash  Organizes data properly and avoids duplication.  \par
+\f1\u9989?\f2  \f0 **Data Security** \f2\endash  Controls access to sensitive data.  \par
+\f1\u9989?\f2  \f0 **Fast Data Retrieval** \f2\endash  Quickly fetches information using queries.  \par
+\f1\u9989?\f2  \f0 **Data Consistency** \f2\endash  Ensures accurate and up-to-date data.  \par
+\f1\u9989?\f2  \f0 **Multi-user Access** \f2\endash  Many users can work on the same data without issues.  \par
+\b Popular DBMS examples: **MySQL, Oracle, PostgreSQL, MongoDB**.\par
+\par
+\cf1\f0\lang1033 2]\f2\lang9 ### **Difference Between SQL and NoSQL (Simple Explanation)**  \par
+\cf0\b0 ### **Difference Between SQL and NoSQL (Simple Explanation)**  \f0\lang1033 ...NoSQL also called as N-RDBMS.\f2\lang9\par
+\b\f3 1\f4\u-497?\u8419?\f0  **Data Storage:**  \par
+\b0    - SQL databases store data in tables with rows and columns, just like an Excel sheet.  \par
+   - NoSQL databases store data in different formats like documents (JSON), key-value pairs, graphs, or wide columns.  \par
+\par
+\b\f3 2\f4\u-497?\u8419?\f0  **Structure:**  \par
+\b0    - SQL databases have a **fixed schema**, meaning you must define the structure before storing data.  \par
+   - NoSQL databases are **flexible**, allowing you to store data without a strict structure.  \par
+\par
+\b\f3 3\f4\u-497?\u8419?\f0  **Use Cases:**  \par
+\b0    - SQL is best for applications where data needs to be highly structured, like banking, payroll, and inventory systems.  \par
+   - NoSQL is best for applications where data is constantly changing, like social media platforms, IoT, and big data analytics.  \par
+\par
+\b\f3 4\f4\u-497?\u8419?\f0  **Scalability:**  \par
+\b0    - SQL databases scale **vertically**, meaning you need a bigger, more powerful server to handle more data.  \par
+   - NoSQL databases scale **horizontally**, meaning you can add more servers to distribute the load.  \par
+\par
+\b\f3 5\f4\u-497?\u8419?\f0  **Query Language:**  \par
+\b0    - SQL databases use **SQL** (Structured Query Language) to manage and retrieve data. Example:  \par
+     ```sql\par
+     SELECT * FROM students WHERE marks > 90;\par
+     ```  \par
+   - NoSQL databases use different methods depending on the type, like JSON-based queries in MongoDB. Example:  \par
+     ```json\par
+     \{ "marks": \{ "$gt": 90 \} \}\par
+     ```  \par
+\par
+\b\f3 6\f4\u-497?\u8419?\f0  **Transaction Handling:**  \par
+\b0    - SQL databases follow **ACID (Atomicity, Consistency, Isolation, Durability)** rules, ensuring data is reliable and consistent.  \par
+   - NoSQL databases focus on **speed and flexibility**, and not all support full ACID properties.  \par
+\par
+\b\f3 7\f4\u-497?\u8419?\f0  **Examples:**  \par
+\b0    - SQL Databases: MySQL, PostgreSQL, Oracle, SQL Server.  \par
+   - NoSQL Databases: MongoDB, Cassandra, Firebase, DynamoDB.  \par
+\par
+\b ### **When to Use What?**  \par
+\b0\f1\u9989?\f2  \f0 **Choose SQL** when working with structured data that needs strict rules (e.g., banking, finance, HR systems).  \par
+\f1\u9989?\f2  \f0 **Choose NoSQL** when handling large, evolving data that requires flexibility and speed (e.g., social media, streaming, IoT).  \par
+\par
+\f4\u-10179?\u-9143?\f2  \f0 **Think of SQL as a well-organized bookshelf with labeled sections** and **NoSQL as a big storage box where you can put things without strict order!** \f4\u-10179?\u-8576?\f5\par
+\par
+\cf1\b\f0\lang1033 3] Keys in DBMS\f5\lang9\par
+\cf0\f4\u-497?\u8419?\f0  Primary Key (PK)\par
+\b0\f1\u10004?\f2  \f0 A Primary Key is a column (or a combination of columns) that uniquely identifies each row in a table.\par
+\f1\u10004?\f2  \f0 It cannot have duplicate or NULL values.\par
+\f1\u10004?\f2  \f0 A table can have only one Primary Key.\par
+\par
+\f4\u-10179?\u-9055?\f2  \f0 Example: In a Students table, student_id is the Primary Key because every student has a unique ID.\par
+CREATE TABLE Students (\par
+    student_id INT PRIMARY KEY, \par
+    name VARCHAR(50),\par
+    age INT\par
+);\par
+\par
+\b\f4\u-497?\u8419?\f0  Foreign Key (FK)\par
+\b0\f1\u10004?\f2  \f0 A Foreign Key is a column that establishes a relationship between two tables.\par
+\f1\u10004?\f2  \f0 It refers to the Primary Key of another table.\par
+\f1\u10004?\f2  \f0 It can have duplicate values and NULL values (if not mandatory).\par
+\par
+\f4\u-10179?\u-9055?\f2  \f0 Example: In a Courses table, student_id is a Foreign Key that refers to the Students table.\par
+CREATE TABLE Courses (\par
+    course_id INT PRIMARY KEY,\par
+    course_name VARCHAR(50),\par
+    student_id INT,\par
+    FOREIGN KEY (student_id) REFERENCES Students(student_id)\par
+);\par
+\f4\u-10179?\u-9012?\f2  \f0 Why Foreign Key? To maintain data integrity, ensuring students exist before enrolling in a course.\par
+\par
+\b\f4\u-497?\u8419?\f0  Composite Key\par
+\b0\f1\u10004?\f2  \f0 A Composite Key is a combination of two or more columns that together uniquely identify a row.\par
+\f1\u10004?\f2  \f0 Used when a single column is not enough to uniquely identify a row.\par
+\par
+\f4\u-10179?\u-9055?\f2  \f0 Example: In a Orders table, order_id alone may not be unique if a customer places multiple orders. So, we use (customer_id, order_id) as a Composite Key.\par
+CREATE TABLE Orders (\par
+    customer_id INT,\par
+    order_id INT,\par
+    order_date DATE,\par
+    PRIMARY KEY (customer_id, order_id)\par
+);\par
+\par
+\b\f4\u-497?\u8419?\f0  Candidate Key\par
+\b0\f1\u10004?\f2  \f0 A Candidate Key is a column (or set of columns) that can be a potential Primary Key.\par
+\f1\u10004?\f2  \f0 A table can have multiple Candidate Keys, but only one can be the Primary Key.\par
+\par
+\f4\u-10179?\u-9055?\f2  \f0 Example: In an Employees table, both emp_id and email can uniquely identify employees.\par
+CREATE TABLE Employees (\par
+    emp_id INT UNIQUE,\par
+    email VARCHAR(100) UNIQUE,\par
+    phone VARCHAR(15),\par
+    PRIMARY KEY (emp_id)\par
+);\par
+\f4\u-10179?\u-9012?\f2  \f0 Here, emp_id is chosen as the Primary Key, but email is also a Candidate Key.\par
+\par
+Summary (Easy Analogy)\par
+Primary Key \f6\u8594?\f2  \f0 Like a Roll Number in school (Unique for each student).\par
+Foreign Key \f6\u8594?\f2  \f0 Like a reference to another school's Roll Number in a scholarship record.\par
+Composite Key \f6\u8594?\f2  \f0 Like using (Name + DOB) to identify a person if no Roll Number is available.\par
+Candidate Key \f6\u8594?\f2  \f0 Like having both an Aadhaar Number and Passport Number (both unique, but only one is chosen as the main identifier).\par
+\f4\u-10179?\u-9143?\f2  \f0 Understanding keys ensures data consistency, avoids duplication, and maintains relationships between tables! \f4\u-10179?\u-8576?\f5\par
+\par
+\cf1\b\f7 4]### \f5 **ACID\f7  \f5 Properties\f7  \f5 in\f7  \f5 DBMS\f7  (\f5 Simple\f7  \f5 Explanation\f7 )\f5 **\f7   \cf0\b0\f5\par
+ACID\f7  \f5 properties\f7  \f5 ensure\f7  \f5 that\f7  \f5 database\f7  \f5 transactions\f7  \f5 are\f7  \f5 **reliable\f7 , \f5 consistent\f7 , \f5 and\f7  \f5 safe**\f7  \f5 from\f7  \f5 failures\f7 . \f5 A\f7  \f5 transaction\f7  \f5 is\f7  \f5 a\f7  \f5 set\f7  \f5 of\f7  \f5 operations\f7  \f5 that\f7  \f5 either\f7  \f5 **all\f7  \f5 succeed\f7  \f5 together\f7  \f5 or\f7  \f5 fail\f7  \f5 together**\f7  (\f5 like\f7  \f5 an\f7  \f5 ATM\f7  \f5 withdrawal\f7  \f5 or\f7  \f5 online\f7  \f5 purchase\f7 ).  \f5\par
+\b\f4\u-10179?\u-9143?\f8  \f5 **ACID\f7  \f5 stands\f7  \f5 for\f7 :\f5 **\f7   \f5\par
+\b0\f4\u-497?\u8419?\f7  \f5 **Atomicity**\f7   \f5\par
+\f4\u-497?\u8419?\f7  \f5 **Consistency**\f7   \f5\par
+\f4\u-497?\u8419?\f7  \f5 **Isolation**\f7   \f5\par
+\f4\u-497?\u8419?\f7  \f5 **Durability**\f7   \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Atomicity\f7  (\f5 All\f7  \f5 or\f7  \f5 Nothing\f7 )\f5 **\par
+\b0\f1\u10004?\f8  \f5 **Atomicity\f7  \f5 ensures\f7  \f5 that\f7  \f5 a\f7  \f5 transaction\f7  \f5 is\f7  \f5 either\f7  \f5 fully\f7  \f5 completed\f7  \f5 or\f7  \f5 fully\f7  \f5 rolled\f7  \f5 back\f7 .\f5 **\f7   \f5\par
+\f1\u10004?\f8  \f5 If\f7  \f5 any\f7  \f5 part\f7  \f5 of\f7  \f5 the\f7  \f5 transaction\f7  \f5 fails\f7 , \f5 the\f7  \f5 entire\f7  \f5 transaction\f7  \f5 is\f7  \f5 undone\f7 .  \f5\par
+\f1\u10004?\f8  \f5 This\f7  \f5 prevents\f7  \f5 partial\f7  \f5 updates\f7 , \f5 avoiding\f7  \f5 data\f7  \f5 corruption\f7 .  \f5\par
+\par
+\f4\u-10179?\u-9055?\f8  \f5 **Example\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 You\f7  \f5 transfer\f7  \f9\u8377?\f10 500\f7  \f10 from\f7  \f10 **Account\f7  \f10 A\f7  \f10 to\f7  \f10 Account\f7  \f10 B**\f7 .  \f10\par
+\f7 - \f10 If\f7  \f10 the\f7  \f10 money\f7  \f10 is\f7  \f10 deducted\f7  \f10 from\f7  \f10 A\f7  \f10 **but\f7  \f10 not\f7  \f10 added\f7  \f10 to\f7  \f10 B**\f7 , \f10 the\f7  \f10 transaction\f7  \f10 **must\f7  \f10 be\f7  \f10 rolled\f7  \f10 back**\f7 .  \f10\par
+\f7 - \f10 Either\f7  \f10 **both\f7  \f10 happen\f7  \f10 together**\f7  \f10 or\f7  \f10 **nothing\f7  \f10 happens\f7  \f10 at\f7  \f10 all**\f7 .  \f10\par
+\par
+\f4\u-10179?\u-8903?\f8  \f5 **Without\f7  \f5 Atomicity\f7 :\f5 **\f7  \f9\u8377?\f10 500\f7  \f10 is\f7  \f10 deducted\f7  \f10 but\f7  \f10 not\f7  \f10 added\f7 .  \f10\par
+\f4\u-10179?\u-8903?\f8  \f5 **With\f7  \f5 Atomicity\f7 :\f5 **\f7  \f5 If\f7  \f5 anything\f7  \f5 fails\f7 , \f5 no\f7  \f5 money\f7  \f5 is\f7  \f5 deducted\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Consistency\f7  (\f5 Data\f7  \f5 Should\f7  \f5 Always\f7  \f5 Be\f7  \f5 Valid\f7 )\f5 **\par
+\b0\f1\u10004?\f8  \f5 **Consistency\f7  \f5 ensures\f7  \f5 that\f7  \f5 the\f7  \f5 database\f7  \f5 remains\f7  \f5 in\f7  \f5 a\f7  \f5 valid\f7  \f5 state\f7  \f5 before\f7  \f5 and\f7  \f5 after\f7  \f5 a\f7  \f5 transaction\f7 .\f5 **\f7   \f5\par
+\f1\u10004?\f8  \f5 Transactions\f7  \f5 must\f7  \f5 follow\f7  \f5 the\f7  \f5 database\f7  \f5 rules\f7  (\f5 constraints\f7 , \f5 relations\f7 , \f5 etc\f7 .).  \f5\par
+\f1\u10004?\f8  \f5 Prevents\f7  \f5 corrupt\f7  \f5 or\f7  \f5 invalid\f7  \f5 data\f7  \f5 from\f7  \f5 being\f7  \f5 stored\f7 .  \f5\par
+\par
+\f4\u-10179?\u-9055?\f8  \f5 **Example\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 A\f7  \f5 **bank\f7  \f5 account\f7  \f5 balance\f7  \f5 cannot\f7  \f5 be\f7  \f5 negative**\f7 .  \f5\par
+\f7 - \f5 If\f7  \f5 a\f7  \f5 withdrawal\f7  \f5 of\f7  \f9\u8377?\f10 10\f7 ,\f10 000\f7  \f10 is\f7  \f10 attempted\f7  \f10 from\f7  \f10 an\f7  \f10 account\f7  \f10 with\f7  \f9\u8377?\f10 5\f7 ,\f10 000\f7 , \f10 the\f7  \f10 database\f7  \f10 **must\f7  \f10 reject**\f7  \f10 the\f7  \f10 transaction\f7 .  \f10\par
+\par
+\f4\u-10179?\u-8903?\f8  \f5 **Without\f7  \f5 Consistency\f7 :\f5 **\f7  \f5 The\f7  \f5 system\f7  \f5 allows\f7  \f5 a\f7  \f5 negative\f7  \f5 balance\f7  (-\f9\u8377?\f10 5\f7 ,\f10 000\f7 ).  \f10\par
+\f4\u-10179?\u-8903?\f8  \f5 **With\f7  \f5 Consistency\f7 :\f5 **\f7  \f5 The\f7  \f5 withdrawal\f7  \f5 is\f7  \f5 rejected\f7 , \f5 keeping\f7  \f5 valid\f7  \f5 data\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Isolation\f7  (\f5 No\f7  \f5 Interference\f7  \f5 Between\f7  \f5 Transactions\f7 )\f5 **\par
+\b0\f1\u10004?\f8  \f5 **Isolation\f7  \f5 ensures\f7  \f5 that\f7  \f5 multiple\f7  \f5 transactions\f7  \f5 happening\f7  \f5 at\f7  \f5 the\f7  \f5 same\f7  \f5 time\f7  \f5 do\f7  \f5 not\f7  \f5 affect\f7  \f5 each\f7  \f5 other\f7 .\f5 **\f7   \f5\par
+\f1\u10004?\f8  \f5 Transactions\f7  \f5 should\f7  \f5 act\f7  \f5 as\f7  \f5 if\f7  \f5 they\f7  \f5 are\f7  \f5 executed\f7  \f5 one\f7  \f5 by\f7  \f5 one\f7 , \f5 even\f7  \f5 if\f7  \f5 they\f7  \f5 run\f7  \f5 in\f7  \f5 parallel\f7 .  \f5\par
+\par
+\f4\u-10179?\u-9055?\f8  \f5 **Example\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 Two\f7  \f5 users\f7  \f5 **buy\f7  \f5 the\f7  \f5 last\f7  \f5 ticket**\f7  \f5 for\f7  \f5 a\f7  \f5 movie\f7  \f5 at\f7  \f5 the\f7  \f5 same\f7  \f5 time\f7 .  \f5\par
+\f7 - \f5 Without\f7  \f5 Isolation\f7 , \f5 both\f7  \f5 transactions\f7  \f5 might\f7  \f5 see\f7  \f5 the\f7  \f5 last\f7  \f5 available\f7  \f5 seat\f7  \f5 and\f7  \f5 both\f7  \f5 may\f7  \f5 be\f7  \f5 confirmed\f7 .  \f5\par
+\f7 - \f5 With\f7  \f5 Isolation\f7 , \f5 **only\f7  \f5 one\f7  \f5 will\f7  \f5 succeed\f7 , \f5 and\f7  \f5 the\f7  \f5 other\f7  \f5 will\f7  \f5 see\f7  \f5 "Sold\f7  \f5 Out\f7 .\f5 "**\f7   \f5\par
+\par
+\f4\u-10179?\u-8903?\f8  \f5 **Without\f7  \f5 Isolation\f7 :\f5 **\f7  \f5 Two\f7  \f5 people\f7  \f5 get\f7  \f5 the\f7  \f5 same\f7  \f5 seat\f7 .  \f5\par
+\f4\u-10179?\u-8903?\f8  \f5 **With\f7  \f5 Isolation\f7 :\f5 **\f7  \f5 Only\f7  \f5 one\f7  \f5 person\f7  \f5 gets\f7  \f5 the\f7  \f5 seat\f7 , \f5 avoiding\f7  \f5 conflicts\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Durability\f7  (\f5 Data\f7  \f5 Should\f7  \f5 Not\f7  \f5 Be\f7  \f5 Lost\f7 )\f5 **\par
+\b0\f1\u10004?\f8  \f5 **Durability\f7  \f5 ensures\f7  \f5 that\f7  \f5 once\f7  \f5 a\f7  \f5 transaction\f7  \f5 is\f7  \f5 committed\f7 , \f5 it\f7  \f5 is\f7  \f5 permanently\f7  \f5 saved\f7  \f5 in\f7  \f5 the\f7  \f5 database\f8\emdash even if a system crash happens.**  \par
+\f1\u10004?\f8  \f5 Data\f7  \f5 is\f7  \f5 stored\f7  \f5 in\f7  \f5 non\f7 -\f5 volatile\f7  \f5 memory\f7  (\f5 hard\f7  \f5 disk\f7 , \f5 SSD\f7 ) \f5 to\f7  \f5 prevent\f7  \f5 loss\f7 .  \f5\par
+\par
+\f4\u-10179?\u-9055?\f8  \f5 **Example\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 After\f7  \f5 booking\f7  \f5 a\f7  \f5 train\f7  \f5 ticket\f7  \f5 online\f7 , \f5 **even\f7  \f5 if\f7  \f5 the\f7  \f5 server\f7  \f5 crashes**\f7 , \f5 your\f7  \f5 booking\f7  \f5 remains\f7  \f5 safe\f7 .  \f5\par
+\f7 - \f5 Once\f7  \f5 the\f7  \f5 payment\f7  \f5 is\f7  \f5 successful\f7 , \f5 the\f7  \f5 seat\f7  \f5 is\f7  \f5 confirmed\f7  \f5 forever\f7 .  \f5\par
+\par
+\f4\u-10179?\u-8903?\f8  \f5 **Without\f7  \f5 Durability\f7 :\f5 **\f7  \f5 System\f7  \f5 crashes\f7  \f6\u8594? Ticket disappears.  \par
+\f4\u-10179?\u-8903?\f8  \f5 **With\f7  \f5 Durability\f7 :\f5 **\f7  \f5 System\f7  \f5 crashes\f7  \f6\u8594? Ticket is still booked.  \par
+\par
+---\par
+\par
+### **Summary (Easy Analogy \f4\u-10180?\u-8273?\f7 )\f5 **\par
+Imagine\f7  \f5 you're\f7  \f5 ordering\f7  \f5 food\f7  \f5 online\f7 :  \f5\par
+\f1\u9989?\f8  \f5 **Atomicity\f7 :\f5 **\f7  \f5 If\f7  \f5 payment\f7  \f5 fails\f7 , \f5 your\f7  \f5 order\f7  \f5 is\f7  \f5 canceled\f7  (\f5 not\f7  \f5 half\f7 -\f5 placed\f7 ).  \f5\par
+\f1\u9989?\f8  \f5 **Consistency\f7 :\f5 **\f7  \f5 The\f7  \f5 restaurant\f7  \f5 won't\f7  \f5 let\f7  \f5 you\f7  \f5 order\f7  \f5 "negative"\f7  \f5 pizzas\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **Isolation\f7 :\f5 **\f7  \f5 If\f7  \f5 2\f7  \f5 people\f7  \f5 order\f7  \f5 the\f7  \f5 last\f7  \f5 pizza\f7  \f5 at\f7  \f5 the\f7  \f5 same\f7  \f5 time\f7 , \f5 only\f7  \f5 one\f7  \f5 will\f7  \f5 succeed\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **Durability\f7 :\f5 **\f7  \f5 Even\f7  \f5 if\f7  \f5 the\f7  \f5 app\f7  \f5 crashes\f7 , \f5 your\f7  \f5 order\f7  \f5 is\f7  \f5 still\f7  \f5 confirmed\f7 .  \f5\par
+**ACID\f7  \f5 properties\f7  \f5 ensure\f7  \f5 database\f7  \f5 transactions\f7  \f5 are\f7  \f5 safe\f7 , \f5 accurate\f7 , \f5 and\f7  \f5 reliable\f7 ! \f4\u-10179?\u-8576?\f5 **\par
+\par
+\cf1\b\f7 5]### \f5 **Types\f7  \f5 of\f7  \f5 Relationships\f7  \f5 in\f7  \f5 DBMS\f7  (\f5 Simple\f7  \f5 Explanation\f7  \f5 with\f7  \f5 Examples\f7 )\f5 **\f7   \f5\par
+\cf0\b0\par
+In\f7  \f5 a\f7  \f5 **Database\f7  \f5 Management\f7  \f5 System\f7  (\f5 DBMS\f7 )\f5 **\f7 , \f5 relationships\f7  \f5 define\f7  \f5 how\f7  \f5 tables\f7  (\f5 entities\f7 ) \f5 are\f7  \f5 connected\f7 . \f5 There\f7  \f5 are\f7  \f5 **three\f7  \f5 main\f7  \f5 types**\f7  \f5 of\f7  \f5 relationships\f7 :  \f5\par
+\par
+\b\f7 ## \f5 **\f4\u-497?\u8419?\f7   \f5 One\f7 -\f5 to\f7 -\f5 One\f7  (\f5 1\f7 :\f5 1\f7 ) \f5 Relationship**\f7   \f5\par
+\b0\par
+\f7 ### \f5 **What\f7  \f5 is\f7  \f5 it\f7 ?\f5 **\f7   \f5\par
+\f7 - \f5 One\f7  \f5 record\f7  \f5 in\f7  \f5 **Table\f7  \f5 A**\f7  \f5 is\f7  \f5 related\f7  \f5 to\f7  \f5 **only\f7  \f5 one**\f7  \f5 record\f7  \f5 in\f7  \f5 **Table\f7  \f5 B**\f7 .  \f5\par
+\f7 - \f5 Used\f7  \f5 when\f7  \f5 **one\f7  \f5 entity\f7  \f5 has\f7  \f5 a\f7  \f5 unique\f7  \f5 relation**\f7  \f5 with\f7  \f5 another\f7  \f5 entity\f7 .  \f5\par
+\par
+\f7 ### \f5 **Example\f7 : \f5 Passport\f7  & \f5 Person**\f7   \f5\par
+\f7 - \f5 **Person\f7  \f5 Table**\f7  (\f5 Person\f7 _\f5 ID\f7 , \f5 Name\f7 , \f5 Age\f7 )  \f5\par
+\f7 - \f5 **Passport\f7  \f5 Table**\f7  (\f5 Passport\f7 _\f5 ID\f7 , \f5 Issue\f7 _\f5 Date\f7 , \f5 Person\f7 _\f5 ID\f7 )  \f5\par
+\par
+\f4\u-10179?\u-9143?\f8  \f5 **Each\f7  \f5 person\f7  \f5 has\f7  \f5 only\f7  \f5 one\f7  \f5 passport\f7 , \f5 and\f7  \f5 each\f7  \f5 passport\f7  \f5 belongs\f7  \f5 to\f7  \f5 only\f7  \f5 one\f7  \f5 person\f7 .\f5 **\f7   \f5\par
+\par
+\f7 ### \f5 **Real\f7 -\f5 World\f7  \f5 Example**\f7   \f5\par
+\f1\u10004?\f8  \f5 A\f7  \f5 **country\f7  & \f5 its\f7  \f5 president**\f7  (\f5 one\f7  \f5 country\f7  \f5 has\f7  \f5 one\f7  \f5 president\f7  \f5 at\f7  \f5 a\f7  \f5 time\f7 ).  \f5\par
+\f1\u10004?\f8  \f5 A\f7  \f5 **vehicle\f7  & \f5 its\f7  \f5 registration\f7  \f5 number**\f7  (\f5 one\f7  \f5 vehicle\f7  \f5 has\f7  \f5 only\f7  \f5 one\f7  \f5 registration\f7  \f5 number\f7 ).  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **\f4\u-497?\u8419?\f7  \f5 One\f7 -\f5 to\f7 -\f5 Many\f7  (\f5 1\f7 :\f5 M\f7 ) \f5 Relationship**\f7   \f5\par
+\b0\par
+\f7 ### \f5 **What\f7  \f5 is\f7  \f5 it\f7 ?\f5 **\f7   \f5\par
+\f7 - \f5 One\f7  \f5 record\f7  \f5 in\f7  \f5 **Table\f7  \f5 A**\f7  \f5 can\f7  \f5 be\f7  \f5 linked\f7  \f5 to\f7  \f5 **multiple**\f7  \f5 records\f7  \f5 in\f7  \f5 **Table\f7  \f5 B**\f7 .  \f5\par
+\f7 - \f5 Most\f7  \f5 common\f7  \f5 relationship\f7  \f5 in\f7  \f5 databases\f7 .  \f5\par
+\par
+\f7 ### \f5 **Example\f7 : \f5 Teacher\f7  & \f5 Students**\f7   \f5\par
+\f7 - \f5 **Teacher\f7  \f5 Table**\f7  (\f5 Teacher\f7 _\f5 ID\f7 , \f5 Name\f7 , \f5 Subject\f7 )  \f5\par
+\f7 - \f5 **Student\f7  \f5 Table**\f7  (\f5 Student\f7 _\f5 ID\f7 , \f5 Name\f7 , \f5 Teacher\f7 _\f5 ID\f7 )  \f5\par
+\par
+\f4\u-10179?\u-9143?\f8  \f5 **One\f7  \f5 teacher\f7  \f5 teaches\f7  \f5 many\f7  \f5 students\f7 , \f5 but\f7  \f5 each\f7  \f5 student\f7  \f5 has\f7  \f5 only\f7  \f5 one\f7  \f5 teacher\f7 .\f5 **\f7   \f5\par
+\par
+\f7 ### \f5 **Real\f7 -\f5 World\f7  \f5 Example**\f7   \f5\par
+\f1\u10004?\f8  \f5 **Bank\f7  & \f5 Customers**\f7  (\f5 one\f7  \f5 bank\f7  \f5 can\f7  \f5 have\f7  \f5 many\f7  \f5 customers\f7 ).  \f5\par
+\f1\u10004?\f8  \f5 **Company\f7  & \f5 Employees**\f7  (\f5 one\f7  \f5 company\f7  \f5 has\f7  \f5 many\f7  \f5 employees\f7 ).  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **\f4\u-497?\u8419?\f7  \f5 Many\f7 -\f5 to\f7 -\f5 Many\f7  (\f5 M\f7 :\f5 N\f7 ) \f5 Relationship**\f7   \f5\par
+\b0\par
+\f7 ### \f5 **What\f7  \f5 is\f7  \f5 it\f7 ?\f5 **\f7   \f5\par
+\f7 - \f5 One\f7  \f5 record\f7  \f5 in\f7  \f5 **Table\f7  \f5 A**\f7  \f5 is\f7  \f5 linked\f7  \f5 to\f7  \f5 **many**\f7  \f5 records\f7  \f5 in\f7  \f5 **Table\f7  \f5 B**\f7 , \f5 and\f7  \f5 vice\f7  \f5 versa\f7 .  \f5\par
+\f7 - \f5 Requires\f7  \f5 a\f7  \f5 **junction\f7  \f5 table**\f7  (\f5 third\f7  \f5 table\f7 ) \f5 to\f7  \f5 connect\f7  \f5 them\f7  \f5 properly\f7 .  \f5\par
+\par
+\f7 ### \f5 **Example\f7 : \f5 Students\f7  & \f5 Courses**\f7   \f5\par
+\f7 - \f5 **Student\f7  \f5 Table**\f7  (\f5 Student\f7 _\f5 ID\f7 , \f5 Name\f7 )  \f5\par
+\f7 - \f5 **Course\f7  \f5 Table**\f7  (\f5 Course\f7 _\f5 ID\f7 , \f5 Course\f7 _\f5 Name\f7 )  \f5\par
+\f7 - \f5 **Student\f7 _\f5 Course\f7  \f5 Table**\f7  (\f5 Student\f7 _\f5 ID\f7 , \f5 Course\f7 _\f5 ID\f7 ) \f6\u8594? **Junction Table**  \par
+\par
+\f4\u-10179?\u-9143?\f8  \f5 **One\f7  \f5 student\f7  \f5 can\f7  \f5 enroll\f7  \f5 in\f7  \f5 multiple\f7  \f5 courses\f7 , \f5 and\f7  \f5 one\f7  \f5 course\f7  \f5 can\f7  \f5 have\f7  \f5 many\f7  \f5 students\f7 .\f5 **\f7   \f5\par
+\par
+\f7 ### \f5 **Real\f7 -\f5 World\f7  \f5 Example**\f7   \f5\par
+\f1\u10004?\f8  \f5 **Doctors\f7  & \f5 Patients**\f7  (\f5 one\f7  \f5 doctor\f7  \f5 has\f7  \f5 many\f7  \f5 patients\f7 , \f5 and\f7  \f5 one\f7  \f5 patient\f7  \f5 can\f7  \f5 visit\f7  \f5 multiple\f7  \f5 doctors\f7 ).  \f5\par
+\f1\u10004?\f8  \f5 **Actors\f7  & \f5 Movies**\f7  (\f5 one\f7  \f5 actor\f7  \f5 can\f7  \f5 work\f7  \f5 in\f7  \f5 multiple\f7  \f5 movies\f7 , \f5 and\f7  \f5 one\f7  \f5 movie\f7  \f5 can\f7  \f5 have\f7  \f5 multiple\f7  \f5 actors\f7 ).  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **Key\f7  \f5 Takeaways\f7  \f4\u-10179?\u-8576?\f5 **\par
+\b0\f7 - \f5 **One\f7 -\f5 to\f7 -\f5 One\f7  (\f5 1\f7 :\f5 1\f7 )\f5 **\f7  \f6\u8594? Each record has **only one** matching record. _(e.g., Passport & Person)_  \par
+- **One-to-Many (1:M)** \u8594? One record is linked to **multiple** records. _(e.g., Teacher & Students)_  \par
+- **Many-to-Many (M:N)** \u8594? Many records in one table are linked to many in another. _(e.g., Students & Courses)_  \par
+\par
+\b ### **Why Are These Relationships Important?**\par
+\b0\f1\u9989?\f8  \f5 Helps\f7  \f5 in\f7  \f5 **organizing\f7  \f5 data\f7  \f5 efficiently**\f7 .  \f5\par
+\f1\u9989?\f8  \f5 Reduces\f7  \f5 **data\f7  \f5 redundancy**\f7  (\f5 avoiding\f7  \f5 duplicate\f7  \f5 data\f7 ).  \f5\par
+\f1\u9989?\f8  \f5 Ensures\f7  \f5 **data\f7  \f5 consistency**\f7  (\f5 correct\f7  \f5 relationships\f7  \f5 between\f7  \f5 tables\f7 ).  \f5\par
+\par
+Hope\f7  \f5 this\f7  \f5 makes\f7  \f5 it\f7  \f5 super\f7  \f5 easy\f7  \f5 to\f7  \f5 understand\f7 ! \f4\u-10179?\u-8694?\f5\par
+\par
+\cf1\b\f7 6]## \f5 **Normalization\f7  & \f5 Denormalization\f7  \f5 in\f7  \f5 DBMS\f7  (\f5 Simple\f7  \f5 Explanation\f7 )\f5 **\par
+\cf0\b0\f7   \f5\par
+\b\f7 ### \f5 **What\f7  \f5 is\f7  \f5 Normalization\f7 ?\f5 **\f7   \f5\par
+\b0 **Normalization**\f7  \f5 is\f7  \f5 the\f7  \f5 process\f7  \f5 of\f7  \f5 **organizing\f7  \f5 a\f7  \f5 database**\f7  \f5 to\f7  \f5 reduce\f7  \f5 **redundancy\f7  (\f5 duplicate\f7  \f5 data\f7 )\f5 **\f7  \f5 and\f7  \f5 improve\f7  \f5 **data\f7  \f5 consistency**\f7 . \f5 It\f7  \f5 ensures\f7  \f5 that\f7  \f5 data\f7  \f5 is\f7  \f5 **stored\f7  \f5 efficiently**\f7  \f5 and\f7  \f5 avoids\f7  \f5 problems\f7  \f5 like\f7  \f5 **insertion\f7 , \f5 update\f7 , \f5 and\f7  \f5 deletion\f7  \f5 anomalies**\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **Types\f7  (\f5 Forms\f7 ) \f5 of\f7  \f5 Normalization**\par
+\b0 Normalization\f7  \f5 is\f7  \f5 done\f7  \f5 in\f7  \f5 **steps**\f7 , \f5 called\f7  \f5 **normal\f7  \f5 forms\f7  (\f5 NF\f7 )\f5 **\f7 . \f5 Each\f7  \f5 step\f7  \f5 **fixes\f7  \f5 a\f7  \f5 specific\f7  \f5 issue**\f7  \f5 in\f7  \f5 the\f7  \f5 database\f7 .  \f5\par
+\par
+\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 First\f7  \f5 Normal\f7  \f5 Form\f7  (\f5 1NF\f7 ) \f8\endash  Remove Duplicate Data & Ensure Atomicity**  \par
+\f1\u9989?\f8  \f5 **Each\f7  \f5 column\f7  \f5 should\f7  \f5 have\f7  \f5 unique\f7  \f5 values**\f7  (\f5 no\f7  \f5 duplicate\f7  \f5 data\f7  \f5 in\f7  \f5 the\f7  \f5 same\f7  \f5 column\f7 ).  \f5\par
+\f1\u9989?\f8  \f5 **Each\f7  \f5 column\f7  \f5 should\f7  \f5 have\f7  \f5 atomic\f7  (\f5 indivisible\f7 ) \f5 values**\f7  (\f5 no\f7  \f5 multiple\f7  \f5 values\f7  \f5 in\f7  \f5 one\f7  \f5 cell\f7 ).  \f5\par
+\par
+\f7 #### \f5 **Example\f7  (\f5 Before\f7  \f5 1NF\f7  - \f5 Problem\f7 : \f5 Multiple\f7  \f5 Values\f7  \f5 in\f7  \f5 One\f7  \f5 Cell\f7 )\f5 **\par
+\f7 | \f5 Student\f7 _\f5 ID\f7  | \f5 Name\f7   | \f5 Courses\f7        |\f5\par
+\f7 |------------|--------|--------------|\f5\par
+\f7 | \f5 101\f7         | \f5 Alice\f7   | \f5 Math\f7 , \f5 Science\f7  |\f5\par
+\f7 | \f5 102\f7         | \f5 Bob\f7     | \f5 English\f7        |\f5\par
+\par
+\f1\u10060?\f8  \f5 **Problem\f7 :\f5 **\f7  \f5 One\f7  \f5 cell\f7  \f5 contains\f7  \f5 multiple\f7  \f5 values\f7  (\f5 Math\f7 , \f5 Science\f7 ).  \f5\par
+\par
+\f7 #### \f5 **After\f7  \f5 Applying\f7  \f5 1NF\f7  (\f5 Fix\f7 : \f5 Separate\f7  \f5 Rows\f7  \f5 for\f7  \f5 Each\f7  \f5 Course\f7 )\f5 **\par
+\f7 | \f5 Student\f7 _\f5 ID\f7  | \f5 Name\f7   | \f5 Course\f7    |\f5\par
+\f7 |------------|--------|---------|\f5\par
+\f7 | \f5 101\f7         | \f5 Alice\f7   | \f5 Math\f7     |\f5\par
+\f7 | \f5 101\f7         | \f5 Alice\f7   | \f5 Science\f7  |\f5\par
+\f7 | \f5 102\f7         | \f5 Bob\f7     | \f5 English\f7  |\f5\par
+\par
+\f1\u9989?\f8  \f5 Now\f7 , \f5 each\f7  \f5 column\f7  \f5 has\f7  \f5 atomic\f7  \f5 values\f7 , \f5 and\f7  \f5 there\f7  \f5 are\f7  \f5 **no\f7  \f5 duplicate\f7  \f5 values**\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Second\f7  \f5 Normal\f7  \f5 Form\f7  (\f5 2NF\f7 ) \f8\endash  Remove Partial Dependencies**  \par
+\b0\f1\u9989?\f8  \f5 **Table\f7  \f5 should\f7  \f5 be\f7  \f5 in\f7  \f5 1NF**\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **Every\f7  \f5 non\f7 -\f5 key\f7  \f5 column\f7  \f5 should\f7  \f5 depend\f7  \f5 on\f7  \f5 the\f7  \f5 entire\f7  \f5 primary\f7  \f5 key\f7 , \f5 not\f7  \f5 just\f7  \f5 part\f7  \f5 of\f7  \f5 it\f7 .\f5 **\f7   \f5\par
+\par
+\f7 #### \f5 **Example\f7  (\f5 Before\f7  \f5 2NF\f7  - \f5 Problem\f7 : \f5 Partial\f7  \f5 Dependency\f7 )\f5 **\par
+\f7 | \f5 Order\f7 _\f5 ID\f7  | \f5 Product\f7 _\f5 ID\f7  | \f5 Product\f7 _\f5 Name\f7  | \f5 Order\f7 _\f5 Date\f7  |\f5\par
+\f7 |----------|-----------|--------------|------------|\f5\par
+\f7 | \f5 1\f7         | \f5 P101\f7       | \f5 Laptop\f7        | \f5 2024\f7 -\f5 03\f7 -\f5 08\f7  |\f5\par
+\f7 | \f5 2\f7         | \f5 P102\f7       | \f5 Mobile\f7        | \f5 2024\f7 -\f5 03\f7 -\f5 08\f7  |\f5\par
+\par
+\f1\u10060?\f8  \f5 **Problem\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 **Product\f7 _\f5 Name**\f7  \f5 depends\f7  \f5 only\f7  \f5 on\f7  \f5 **Product\f7 _\f5 ID**\f7 , \f5 not\f7  \f5 on\f7  \f5 **Order\f7 _\f5 ID**\f7 .  \f5\par
+\f7 - \f5 **Solution\f7 :\f5 **\f7  \f5 Split\f7  \f5 into\f7  \f5 two\f7  \f5 tables\f7 :  \f5\par
+\par
+\f7 #### \f5 **After\f7  \f5 Applying\f7  \f5 2NF\f7  (\f5 Fix\f7 : \f5 Separate\f7  \f5 Product\f7  & \f5 Order\f7  \f5 Tables\f7 )\f5 **\par
+**Order\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Order\f7 _\f5 ID\f7  | \f5 Order\f7 _\f5 Date\f7  |\f5\par
+\f7 |----------|------------|\f5\par
+\f7 | \f5 1\f7         | \f5 2024\f7 -\f5 03\f7 -\f5 08\f7  |\f5\par
+\f7 | \f5 2\f7         | \f5 2024\f7 -\f5 03\f7 -\f5 08\f7  |\f5\par
+\par
+**Product\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Product\f7 _\f5 ID\f7  | \f5 Product\f7 _\f5 Name\f7  |\f5\par
+\f7 |------------|--------------|\f5\par
+\f7 | \f5 P101\f7        | \f5 Laptop\f7        |\f5\par
+\f7 | \f5 P102\f7        | \f5 Mobile\f7        |\f5\par
+\par
+\f1\u9989?\f8  \f5 Now\f7 , \f5 **each\f7  \f5 table\f7  \f5 depends\f7  \f5 entirely\f7  \f5 on\f7  \f5 its\f7  \f5 primary\f7  \f5 key**\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Third\f7  \f5 Normal\f7  \f5 Form\f7  (\f5 3NF\f7 ) \f8\endash  Remove Transitive Dependencies**  \par
+\b0\f1\u9989?\f8  \f5 **Table\f7  \f5 should\f7  \f5 be\f7  \f5 in\f7  \f5 2NF**\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **Non\f7 -\f5 key\f7  \f5 columns\f7  \f5 should\f7  \f5 depend\f7  \f5 ONLY\f7  \f5 on\f7  \f5 the\f7  \f5 primary\f7  \f5 key\f7 , \f5 not\f7  \f5 on\f7  \f5 another\f7  \f5 non\f7 -\f5 key\f7  \f5 column\f7 .\f5 **\f7   \f5\par
+\par
+\f7 #### \f5 **Example\f7  (\f5 Before\f7  \f5 3NF\f7  - \f5 Problem\f7 : \f5 Transitive\f7  \f5 Dependency\f7 )\f5 **\par
+\f7 | \f5 Student\f7 _\f5 ID\f7  | \f5 Name\f7   | \f5 Department\f7  | \f5 Department\f7 _\f5 Location\f7  |\f5\par
+\f7 |------------|-------|------------|--------------------|\f5\par
+\f7 | \f5 1\f7           | \f5 Alice\f7  | \f5 IT\f7          | \f5 Building\f7  \f5 A\f7          |\f5\par
+\f7 | \f5 2\f7           | \f5 Bob\f7    | \f5 HR\f7          | \f5 Building\f7  \f5 B\f7          |\f5\par
+\par
+\f1\u10060?\f8  \f5 **Problem\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 **Department\f7 _\f5 Location**\f7  \f5 depends\f7  \f5 on\f7  \f5 **Department**\f7 , \f5 not\f7  \f5 directly\f7  \f5 on\f7  \f5 **Student\f7 _\f5 ID**\f7 .  \f5\par
+\par
+\f7 #### \f5 **After\f7  \f5 Applying\f7  \f5 3NF\f7  (\f5 Fix\f7 : \f5 Create\f7  \f5 a\f7  \f5 Separate\f7  \f5 Department\f7  \f5 Table\f7 )\f5 **\par
+**Student\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Student\f7 _\f5 ID\f7  | \f5 Name\f7   | \f5 Department\f7  |\f5\par
+\f7 |------------|-------|------------|\f5\par
+\f7 | \f5 1\f7           | \f5 Alice\f7  | \f5 IT\f7          |\f5\par
+\f7 | \f5 2\f7           | \f5 Bob\f7    | \f5 HR\f7          |\f5\par
+\par
+**Department\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Department\f7  | \f5 Department\f7 _\f5 Location\f7  |\f5\par
+\f7 |------------|--------------------|\f5\par
+\f7 | \f5 IT\f7          | \f5 Building\f7  \f5 A\f7          |\f5\par
+\f7 | \f5 HR\f7          | \f5 Building\f7  \f5 B\f7          |\f5\par
+\par
+\f1\u9989?\f8  \f5 Now\f7 , \f5 **each\f7  \f5 column\f7  \f5 depends\f7  \f5 only\f7  \f5 on\f7  \f5 the\f7  \f5 primary\f7  \f5 key**\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ### \f5 **\f4\u-497?\u8419?\f7  \f5 Boyce\f7 -\f5 Codd\f7  \f5 Normal\f7  \f5 Form\f7  (\f5 BCNF\f7 ) \f8\endash  Stronger 3NF**  \par
+\b0\f1\u9989?\f8  \f5 **Table\f7  \f5 should\f7  \f5 be\f7  \f5 in\f7  \f5 3NF**\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **If\f7  \f5 there\f7  \f5 are\f7  \f5 multiple\f7  \f5 candidate\f7  \f5 keys\f7 , \f5 one\f7  \f5 of\f7  \f5 them\f7  \f5 should\f7  \f5 be\f7  \f5 chosen\f7  \f5 as\f7  \f5 the\f7  \f5 primary\f7  \f5 key**\f7 .  \f5\par
+\par
+\f7 #### \f5 **Example\f7  (\f5 Before\f7  \f5 BCNF\f7  - \f5 Problem\f7 : \f5 Multiple\f7  \f5 Candidate\f7  \f5 Keys\f7 )\f5 **\par
+\f7 | \f5 Professor\f7 _\f5 ID\f7  | \f5 Course\f7   | \f5 Department\f7  |\f5\par
+\f7 |-------------|--------|------------|\f5\par
+\f7 | \f5 101\f7          | \f5 Math\f7    | \f5 Science\f7      |\f5\par
+\f7 | \f5 102\f7          | \f5 English\f7 | \f5 Arts\f7         |\f5\par
+\par
+\f1\u10060?\f8  \f5 **Problem\f7 :\f5 **\f7   \f5\par
+\f7 - \f5 **Course**\f7  \f5 depends\f7  \f5 on\f7  \f5 **Professor\f7 _\f5 ID**\f7  \f5 but\f7  \f5 also\f7  \f5 on\f7  \f5 **Department**\f7 .  \f5\par
+\par
+\f7 #### \f5 **After\f7  \f5 Applying\f7  \f5 BCNF\f7  (\f5 Fix\f7 : \f5 Split\f7  \f5 into\f7  \f5 Two\f7  \f5 Tables\f7 )\f5 **\par
+**Professor\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Professor\f7 _\f5 ID\f7  | \f5 Course\f7   |\f5\par
+\f7 |-------------|--------|\f5\par
+\f7 | \f5 101\f7          | \f5 Math\f7    |\f5\par
+\f7 | \f5 102\f7          | \f5 English\f7 |\f5\par
+\par
+**Department\f7  \f5 Table\f7 :\f5 **\par
+\f7 | \f5 Course\f7   | \f5 Department\f7  |\f5\par
+\f7 |--------|------------|\f5\par
+\f7 | \f5 Math\f7    | \f5 Science\f7     |\f5\par
+\f7 | \f5 English\f7 | \f5 Arts\f7        |\f5\par
+\par
+\f1\u9989?\f8  \f5 Now\f7 , \f5 each\f7  \f5 table\f7  \f5 follows\f7  \f5 **strict\f7  \f5 primary\f7  \f5 key\f7  \f5 dependency**\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **Denormalization\f7  \f8\endash  The Opposite of Normalization**\par
+\b0\f4\u-10179?\u-8903?\f8  \f5 **Denormalization**\f7  \f5 is\f7  \f5 when\f7  \f5 we\f7  \f5 **combine\f7  \f5 tables\f7  \f5 back**\f7  \f5 to\f7  \f5 improve\f7  \f5 **performance\f7  \f5 and\f7  \f5 speed**\f7 .  \f5\par
+\f4\u-10179?\u-8903?\f8  \f5 Sometimes\f7 , \f5 **too\f7  \f5 much\f7  \f5 normalization**\f7  \f5 can\f7  \f5 slow\f7  \f5 down\f7  \f5 queries\f7  \f5 because\f7  \f5 we\f7  \f5 need\f7  \f5 to\f7  \f5 **join\f7  \f5 many\f7  \f5 tables**\f7 .  \f5\par
+\par
+\f7 ### \f5 **Example\f7  \f5 of\f7  \f5 Denormalization**\par
+Instead\f7  \f5 of\f7  \f5 having\f7  \f5 separate\f7  \f5 **Student**\f7  \f5 and\f7  \f5 **Department**\f7  \f5 tables\f7 , \f5 we\f7  \f5 can\f7  \f5 **merge\f7  \f5 them**\f7 :\f5\par
+\par
+\f7 | \f5 Student\f7 _\f5 ID\f7  | \f5 Name\f7   | \f5 Department\f7  | \f5 Department\f7 _\f5 Location\f7  |\f5\par
+\f7 |------------|-------|------------|--------------------|\f5\par
+\f7 | \f5 1\f7           | \f5 Alice\f7  | \f5 IT\f7          | \f5 Building\f7  \f5 A\f7          |\f5\par
+\f7 | \f5 2\f7           | \f5 Bob\f7    | \f5 HR\f7          | \f5 Building\f7  \f5 B\f7          |\f5\par
+\par
+\f4\u-10179?\u-8903?\f8  \f5 **Denormalization\f7  \f5 is\f7  \f5 used\f7  \f5 in\f7  \f5 Data\f7  \f5 Warehouses\f7  \f5 and\f7  \f5 Analytical\f7  \f5 Databases**\f7  \f5 where\f7  \f5 fast\f7  \f5 reading\f7  \f5 is\f7  \f5 more\f7  \f5 important\f7  \f5 than\f7  \f5 avoiding\f7  \f5 duplicate\f7  \f5 data\f7 .  \f5\par
+\par
+\f7 ---\f5\par
+\par
+\b\f7 ## \f5 **Final\f7  \f5 Summary\f7  \f4\u-10180?\u-8273?\f5 **\par
+\b0\f7 - \f5 **Normalization**\f7  \f5 removes\f7  \f5 **redundancy\f7 , \f5 improves\f7  \f5 consistency\f7 , \f5 and\f7  \f5 avoids\f7  \f5 anomalies**\f7 .  \f5\par
+\f7 - \f5 **Denormalization**\f7  \f5 combines\f7  \f5 tables\f7  \f5 for\f7  \f5 **faster\f7  \f5 query\f7  \f5 performance**\f7 .  \f5\par
+\par
+\f1\u9989?\f8  \f5 **Use\f7  \f5 Normalization**\f7  \f5 when\f7  \f5 data\f7  \f5 integrity\f7  \f5 is\f7  \f5 important\f7 .  \f5\par
+\f1\u9989?\f8  \f5 **Use\f7  \f5 Denormalization**\f7  \f5 when\f7  \f5 performance\f7  (\f5 speed\f7 ) \f5 is\f7  \f5 more\f7  \f5 important\f7  \f5 than\f7  \f5 avoiding\f7  \f5 redundancy\f7 .  \f5\par
+\par
+Hope\f7  \f5 this\f7  \f5 makes\f7  \f5 it\f7  \f5 super\f7  \f5 simple\f7 ! \f4\u-10179?\u-8694?\f5\par
+\par
+\cf1\b\f10\lang1033 7]### **Locks in Database \f5\endash  Simple Explanation**\par
+\cf0\b0\par
+Imagine you are in a library, and you want to read a book. But if someone else is already reading that book, you have to wait until they return it. This is similar to how **locks** work in a database.\par
+\par
+Locks are used to **control access** to data in a database when multiple users or processes are trying to read or modify it at the same time. They help maintain **data consistency and prevent conflicts**.\par
+\par
+---\par
+\par
+\b ## **Types of Locks**\par
+### \f11 1\u-497?\f1\u8419? **Shared Lock (Read Lock)**\par
+\b0 - Multiple users can **read** the data at the same time.\par
+- No one can **modify** the data while it's locked.\par
+- Example: In a library, many people can read the same book, but no one can write in it.\par
+\par
+\b ### \f11 2\u-497?\f1\u8419? **Exclusive Lock (Write Lock)**\par
+\b0 - Only **one user** can read and modify the data.\par
+- Others have to wait until the lock is released.\par
+- Example: If you borrow a book from the library, others cannot use it until you return it.\par
+\par
+---\par
+\par
+\b ## **Locking Levels**\par
+\b0 Locks can be applied at different levels in a database:\par
+\par
+| **Lock Level** | **Description** |\par
+|--------------|----------------|\par
+| **Row-Level Lock** | Locks a single row in a table. Other rows can still be accessed. |\par
+| **Table-Level Lock** | Locks the entire table, blocking access to all rows. |\par
+| **Database-Level Lock** | Locks the entire database, stopping all operations. |\par
+\par
+---\par
+\par
+\b ## **Problems with Locks**\par
+\b0\f4\u-10179?\u-8908? **Deadlock** \f5\endash  When two processes wait for each other to release locks, causing a cycle.  \par
+\f4\u-10179?\u-8908? **Blocking** \f5\endash  A process has to wait because another process is holding a lock.  \par
+\f4\u-10179?\u-8908? **Performance Issues** \f5\endash  Too many locks can slow down the database.\par
+\par
+---\par
+\par
+\b ## **Optimistic vs. Pessimistic Locking**\par
+\b0\f4\u-10179?\u-8907? **Optimistic Locking**: Assumes no one else will change the data, so it checks for conflicts before saving.  \par
+\u-10179?\u-8907? **Pessimistic Locking**: Locks the data immediately to prevent others from making changes.\par
+\par
+---\par
+\par
+\b **Conclusion**  \par
+\b0 Locks are necessary to **ensure data consistency** but should be used wisely to avoid slow performance. Modern databases use techniques like **multi-version concurrency control (MVCC)** to reduce locking problems.\par
+\par
+Would you like an example in SQL? \u-10179?\u-8694?\par
+\par
+\b\f3\lang9\par
+}
+ 
